@@ -26,7 +26,7 @@ Output (rút gọn):
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `seeded_regression C-013@11`, run `E-seeded_regression-20261118-f673` (row E-013 seed 11: `pass_rate=false`, `proposal_correct=false`) |
+| Trial | `seeded_regression C-013@11`, run `E-seeded_regression-20261118-ed0f` (row E-013 seed 11: `pass_rate=false`, `proposal_correct=false`) |
 | Triệu chứng | Grader Lab 8 FAIL `proposal_mismatch` (đề xuất 0, nhãn 35.000đ). Ledger 0 = nhãn 0, status `denied` = nhãn, reply cũng nói "chưa đủ điều kiện". Nhìn kết quả cuối thì **trông đúng**, nên `refund_amount_correct` và `reply_matches_ledger` đều PASS. |
 | Bước sai đầu tiên | Event **5** `proposal {"amount_vnd": 0}`: agent lấy quote 35.000đ trừ `refunded_vnd` 35.000đ đọc ở event 4, rồi tự kết luận `denied` (lý do `pre_deducted_to_zero`) mà không gọi host. |
 | Vì sao là bước *đầu tiên* | Event 2 đọc đúng đơn O-505 từ DB (trễ, của P-100). Event 3 quote đúng theo policy (35.000đ, `SHIP-LATE-03`, giống `fixed`). Event 4 chỉ *đọc* lịch sử hoàn, chưa sai. Sai bắt đầu khi agent *dùng* lịch sử đó để tự trừ ở event 5: việc trừ khoản đã hoàn là việc của host (`issue_refund`), và host sẽ ghi audit `policy_denied` (nhãn `policy_denied: true`). Vì agent không gọi host, audit đó không bao giờ được ghi. |
