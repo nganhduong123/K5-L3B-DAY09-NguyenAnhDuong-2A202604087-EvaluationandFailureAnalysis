@@ -1,0 +1,3 @@
+# Eval sets are hashed (eval_set_sha): keep LF everywhere so Windows and CI hash the same bytes.
+src/data/eval/*.jsonl text eol=lf
+src/data/eval/*.json text eol=lf
